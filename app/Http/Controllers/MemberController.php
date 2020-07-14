@@ -16,7 +16,7 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $members = Member::get_formated_rows();
+        $members = Member::all();
         return view('member.index', ['members'=>$members]);
     }
 
@@ -49,7 +49,7 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $member = Member::get_by_id($id);
+        $member = Member::find($id);
         $edom_aspects = EdomAspect::all();
         $edom_result = [];
         foreach ($edom_aspects as $aspect) {
@@ -74,9 +74,9 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $member = Member::where('id', $id)->get();
+        $member = Member::find($id);
         $departments = Department::all();
-        return view('member.edit', ['member'=>$member[0], 'departments'=>$departments]);
+        return view('member.edit', ['member'=>$member, 'departments'=>$departments]);
     }
 
     /**

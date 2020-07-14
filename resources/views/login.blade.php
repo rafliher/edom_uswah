@@ -2,9 +2,9 @@
 
 @section('content')
     <!-- Main Section -->
-    <section class="main-section">
+    <section class="main-section card">
         <!-- Add Your Content Inside -->
-        <div class="content">
+        <div class="content card-body">
             <!-- Remove This Before You Start -->
             <h2>Login</h2>
             <hr>

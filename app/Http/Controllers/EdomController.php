@@ -13,13 +13,13 @@ class EdomController extends Controller
 {
     //
     public function validate_login(){
-        if(!Session::get('login')){
-            return redirect('login')->with('alert','Please Log in first!');
+        if(!(Session::has('id'))){
+            return redirect()->route('login')->with(['alert'=>'Please Log in first!']);
         }
     }
     public function index(){
         $this->validate_login();
-        $member_info = Member::get_by_id(Session::get('member_id'));
+        $member_info = Member::find(Session::get('member_id'));
         $department_partners = $member_info->department->members;
         if($member_info->department->name == 'Inti'){
             $sets_to_rate = [$department_partners];
@@ -47,7 +47,7 @@ class EdomController extends Controller
     public function create($id){
         $this->validate_login();
         $aspects = EdomAspect::all();
-        $rating_reciever = Member::get_by_id($id);
+        $rating_reciever = Member::find($id);
         return view('edom.new', ['aspects'=>$aspects, 'rating_reciever'=>$rating_reciever]);
     }
 

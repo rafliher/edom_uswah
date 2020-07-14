@@ -17,10 +17,10 @@ Route::resource('member', 'MemberController');
 
 Route::resource('department', 'DepartmentController');
 
-Route::get('/', 'AuthController@index');
-Route::get('/login', 'AuthController@login');
+Route::get('/', 'AuthController@index')->name('home');
+Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/loginPost', 'AuthController@loginPost');
-Route::get('/logout', 'AuthController@logout');
+Route::get('/logout', 'AuthController@logout')->name('logout');
 
 Route::get('/edom', 'EdomController@index');
 Route::get('/edom/{id}', 'EdomController@create');
